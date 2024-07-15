@@ -24,6 +24,7 @@ export const App = (elementId) => {
   //*  HTML REFERENCES
 
   const newDescInput = document.querySelector(ElementIDs.NewTodoInput);
+  const todoListUL = document.querySelector(ElementIDs.TodoList);
 
   //*  LISTENERS
 
@@ -33,5 +34,11 @@ export const App = (elementId) => {
     todoStore.addTodo(event.target.value);
     displayTodos();
     event.target.value = "";
+  });
+
+  todoListUL.addEventListener("click", (event) => {
+    const element = event.target.closest("[data-id]");
+    todoStore.toggleTodo(element.getAttribute("data-id"));
+    displayTodos();
   });
 };
